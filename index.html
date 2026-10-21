@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>День рождения 🎂</title>
+
+<!-- ===== OPEN GRAPH ===== -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Приглашение на мой день рождения 🎂">
+<meta property="og:description" content="Собираю моменты, а не вещи. Загляни — тут список желаний и детали праздника.">
+<meta property="og:image" content="https://birthday-site.fian311099.workers.dev/images/preview.jpg">
+<meta property="og:url" content="https://birthday-site.fian311099.workers.dev/">
+<meta name="twitter:card" content="summary_large_image">
+<!-- ==================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #faf6f0;
+    --cream-dark: #f0e9dd;
+    --ink: #2e2a26;
+    --muted: #8a8178;
+    --gold: #c9a86a;
+    --gold-dark: #a88643;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  /* ===== ГРАДИЕНТНЫЙ ФОН ===== */
+  .bg-gradient {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background: linear-gradient(135deg, #faf6f0 0%, #f5ede0 25%, #f0e9dd 50%, #f5ede0 75%, #faf6f0 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 24s ease infinite;
+  }
+  @keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* ===== ПАРАЛЛАКС ===== */
+  .parallax-blobs {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    will-change: transform;
+  }
+  .blob-1 { width: 420px; height: 420px; background: rgba(201,168,106,0.28); top: -120px; left: -100px; }
+  .blob-2 { width: 360px; height: 360px; background: rgba(232,200,176,0.32); top: 30%; right: -140px; }
+  .blob-3 { width: 300px; height: 300px; background: rgba(201,168,106,0.20); bottom: -80px; left: 40%; }
+
+  /* ===== ЧАСТИЦЫ / КОНФЕТТИ ===== */
+  #particles-canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  #confetti-canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== ШАПКА ===== */
+  .hero {
+    text-align: center;
+    padding: 80px 20px 40px;
+    position: relative;
+  }
+  .hero .ornament {
+    font-size: 1.5em;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 0.9em;
+  }
+  .hero .ornament .star {
+    display: inline-block;
+    animation: twinkle 2.6s ease-in-out infinite;
+    will-change: opacity, transform, filter;
+  }
+  .hero .ornament .star:nth-child(1) { animation-delay: 0s;   }
+  .hero .ornament .star:nth-child(2) { animation-delay: 0.6s; }
+  .hero .ornament .star:nth-child(3) { animation-delay: 1.2s; }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.35; transform: scale(0.85); filter: drop-shadow(0 0 0 transparent); }
+    50%      { opacity: 1;    transform: scale(1.1);  filter: drop-shadow(0 0 6px rgba(201, 168, 106, 0.75)); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero .ornament .star { animation: none; opacity: 0.9; }
+    .bg-gradient { animation: none; }
+  }
+
+  .hero .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-size: 0.75em;
+    font-weight: 600;
+    color: var(--gold-dark);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: clamp(2.6em, 8vw, 4.2em);
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .hero h1 .accent { color: var(--gold-dark); font-style: italic; }
+  .hero .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.2em, 3vw, 1.5em);
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 12px;
+  }
+
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 40px auto;
+    position: relative;
+  }
+  .divider::before, .divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    transform: translateY(-50%);
+  }
+  .divider::before { left: -14px; }
+  .divider::after  { right: -14px; }
+
+  /* ===== ОБРАТНЫЙ ОТСЧЁТ ===== */
+  .countdown-wrap { text-align: center; margin: 12px auto 20px; }
+  .countdown-label {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.72em;
+    font-weight: 600;
+    color: var(--gold-dark);
+    margin-bottom: 16px;
+  }
+  .countdown {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .countdown .unit {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 16px 8px;
+    min-width: 74px;
+    box-shadow: 0 4px 20px rgba(46,42,38,0.06);
+    border: 1px solid rgba(201,168,106,0.18);
+  }
+  .countdown .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.1em;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    display: block;
+    font-variant-numeric: tabular-nums;
+  }
+  .countdown .cap {
+    font-size: 0.62em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 6px;
+    display: block;
+  }
+  .countdown-done {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6em;
+    font-style: italic;
+    color: var(--gold-dark);
+    padding: 10px 0;
+  }
+
+  /* ===== ПРИГЛАШЕНИЕ ===== */
+  .invite {
+    text-align: center;
+    color: var(--muted);
+    font-size: 1.02em;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .invite p + p { margin-top: 14px; }
+
+  /* ===== ЦИТАТА ===== */
+  .quote {
+    text-align: center;
+    max-width: 560px;
+    margin: 44px auto;
+    padding: 32px 24px;
+    position: relative;
+  }
+  .quote::before, .quote::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+  .quote::before { top: 0; }
+  .quote::after  { bottom: 0; }
+  .quote .mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3em;
+    color: var(--gold);
+    line-height: 0.5;
+    display: block;
+    margin-bottom: 12px;
+    opacity: 0.7;
+  }
+  .quote blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.3em, 3.5vw, 1.7em);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+  .quote .author {
+    margin-top: 14px;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--gold-dark);
+    font-weight: 600;
+  }
+
+  /* ===== ТОРТ СО СВЕЧКОЙ ===== */
+  .cake-section {
+    text-align: center;
+    margin: 40px auto;
+    padding: 20px;
+  }
+  .cake-hint {
+    font-size: 0.85em;
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  .cake-wrap {
+    position: relative;
+    display: inline-block;
+    width: 260px;
+    max-width: 100%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .cake-wrap:hover { transform: scale(1.03); }
+  .cake-wrap.blown { cursor: default; }
+  .cake-wrap.blown:hover { transform: none; }
+
+  .cake-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* пламя свечи */
+  .flame {
+    transform-origin: 130px 52px;
+    transform-box: view-box;
+    animation: flicker 0.6s ease-in-out infinite alternate;
+    transition: opacity 0.4s ease;
+  }
+  @keyframes flicker {
+    0%   { opacity: 1;    transform: scale(1, 1); }
+    50%  { opacity: 0.95; transform: scale(1.06, 0.96); }
+    100% { opacity: 1;    transform: scale(0.96, 1.04); }
+  }
+  .cake-wrap.blown .flame {
+    animation: none;
+    opacity: 0;
+  }
+
+  /* дымок */
+  .smoke {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .cake-wrap.blown .smoke {
+    opacity: 1;
+    animation: smokeRise 2s ease-out forwards;
+  }
+  @keyframes smokeRise {
+    0%   { opacity: 0; transform: translateY(0); }
+    20%  { opacity: 0.7; }
+    100% { opacity: 0; transform: translateY(-30px); }
+  }
+
+  .cake-message {
+    margin-top: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3em;
+    font-style: italic;
+    color: var(--gold-dark);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+    min-height: 1.6em;
+  }
+  .cake-wrap.blown ~ .cake-message { opacity: 1; transform: translateY(0); }
+
+  .relight-btn {
+    margin-top: 12px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold-dark);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 0.8em;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease 0.6s, background 0.2s ease;
+  }
+  .cake-wrap.blown ~ .relight-btn { opacity: 1; pointer-events: auto; }
+  .relight-btn:hover { background: var(--gold); color: white; }
+
+  /* ===== ДЕТАЛИ ===== */
+  .details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin: 44px auto 20px;
+    max-width: 600px;
+  }
+  .detail {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 22px 16px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(46,42,38,0.06);
+  }
+  .detail .label {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gold-dark);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .detail .value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35em;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* ===== ЗАГОЛОВКИ СЕКЦИЙ ===== */
+  .section-head { text-align: center; margin: 70px 0 36px; }
+  .section-head h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.9em, 5vw, 2.6em);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .section-head p {
+    color: var(--muted);
+    font-size: 0.98em;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+
+  /* ===== КАРТОЧКИ ===== */
+  .card {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 22px;
+    align-items: center;
+    box-shadow: 0 6px 24px rgba(46,42,38,0.06);
+    border: 1px solid rgba(201,168,106,0.15);
+    transition: transform 0.35s cubic-bezier(.2,.7,.3,1),
+                box-shadow 0.35s cubic-bezier(.2,.7,.3,1),
+                border-color 0.35s ease;
+    overflow: hidden;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 44px rgba(46,42,38,0.14);
+    border-color: rgba(201,168,106,0.35);
+  }
+  .card .img-wrap {
+    width: 110px;
+    height: 110px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: var(--cream-dark);
+  }
+  .card .img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(.2,.7,.3,1);
+  }
+  .card:hover .img-wrap img { transform: scale(1.12); }
+  .card-content { flex: 1; min-width: 0; }
+  .card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5em;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .card .note { color: var(--muted); font-size: 0.92em; margin-bottom: 12px; }
+  .card .meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .card .price { font-weight: 600; color: var(--gold-dark); font-size: 1em; }
+  .btn {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 10px 22px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.88em;
+    letter-spacing: 0.02em;
+    transition: background 0.2s ease, transform 0.2s ease;
+    white-space: nowrap;
+  }
+  .btn:hover { background: var(--gold-dark); transform: translateY(-1px); }
+
+  /* ===== ГАЛЕРЕЯ ===== */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .gallery .g-item {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--cream-dark);
+    box-shadow: 0 4px 16px rgba(46,42,38,0.06);
+    border: 1px solid rgba(201,168,106,0.15);
+    cursor: pointer;
+  }
+  .gallery .g-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(.2,.7,.3,1);
+  }
+  .gallery .g-item:hover img { transform: scale(1.1); }
+  .gallery .g-item .g-caption {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    background: linear-gradient(transparent, rgba(46,42,38,0.75));
+    color: #fff;
+    font-size: 0.8em;
+    padding: 24px 10px 8px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    text-align: center;
+  }
+  .gallery .g-item:hover .g-caption { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 520px) {
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+    .gallery .g-item .g-caption { opacity: 1; transform: none; }
+  }
+
+  /* ===== ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ===== КНОПКА КОНФЕТТИ ===== */
+  .confetti-btn-wrap { text-align: center; margin: 40px 0 10px; }
+  .confetti-btn {
+    background: transparent;
+    border: 1.5px solid var(--gold);
+    color: var(--gold-dark);
+    padding: 12px 28px;
+    border-radius: 100px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.9em;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .confetti-btn:hover { background: var(--gold); color: var(--white); transform: translateY(-2px); }
+  .confetti-btn:active { transform: translateY(0) scale(0.98); }
+
+  /* ===== ПОДВАЛ ===== */
+  footer {
+    text-align: center;
+    padding: 60px 20px 40px;
+    color: var(--muted);
+    font-size: 0.9em;
+  }
+  footer .heart { color: var(--gold-dark); font-size: 1.2em; display: block; margin-bottom: 10px; }
+  footer .note-small {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.15em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  /* ===== ПАСХАЛКА ===== */
+  .egg-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translate(-50%, 140%);
+    background: var(--ink);
+    color: var(--cream);
+    padding: 18px 26px;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(46,42,38,0.35);
+    z-index: 9998;
+    max-width: calc(100% - 32px);
+    width: max-content;
+    transition: transform 0.6s cubic-bezier(.2,.9,.3,1.2), opacity 0.4s ease;
+    opacity: 0;
+    font-size: 0.95em;
+    line-height: 1.4;
+    text-align: center;
+  }
+  .egg-toast.show { transform: translate(-50%, 0); opacity: 1; }
+  .egg-toast .egg-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3em;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 4px;
+    display: block;
+  }
+  .egg-toast .egg-close {
+    position: absolute;
+    top: 6px; right: 10px;
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 1.2em;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+  .egg-toast .egg-close:hover { opacity: 1; }
+
+  @media (max-width: 520px) {
+    .hero { padding: 56px 16px 30px; }
+    .card { flex-direction: column; text-align: center; gap: 16px; }
+    .card .img-wrap { width: 100%; height: 180px; }
+    .card .meta { justify-content: center; }
+    .countdown .unit { min-width: 64px; padding: 12px 6px; }
+    .countdown .num { font-size: 1.7em; }
+    .quote { padding: 24px 16px; }
+    .cake-wrap { width: 200px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ФОНОВЫЕ СЛОИ -->
+<div class="bg-gradient"></div>
+<div class="parallax-blobs">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+<canvas id="particles-canvas"></canvas>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="container">
+
+  <header class="hero">
+    <div class="ornament" aria-hidden="true">
+      <span class="star">✦</span>
+      <span class="star">✦</span>
+      <span class="star">✦</span>
+    </div>
+    <div class="eyebrow">Приглашение</div>
+    <h1>Мой день <span class="accent">рождения</span></h1>
+    <p class="subtitle">йоу йоу йоу</p>
+  </header>
+
+  <div class="countdown-wrap">
+    <div class="countdown-label">До праздника осталось</div>
+    <div id="countdown" class="countdown"></div>
+  </div>
+
+  <section class="invite">
+    <p>Буду счастлив видеть тебя на празднике — соберёмся вместе, чтобы отметить этот день в тёплой компании.</p>
+    <p>Не забудь взять подарок))0)0)))</p>
+  </section>
+
+  <div class="quote">
+    <span class="mark">“</span>
+    <blockquote>Спасибо, выжил</blockquote>
+    <div class="author">девиз года</div>
+  </div>
+
+  <!-- ТОРТ СО СВЕЧКОЙ -->
+  <section class="cake-section">
+    <div class="cake-hint" id="cake-hint">Задуй свечку — и загадай желание ✨</div>
+
+    <div class="cake-wrap" id="cake-wrap" role="button" tabindex="0" aria-label="Задуть свечку на торте">
+      <svg class="cake-svg" viewBox="0 0 260 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+        <!-- дымок (за пламенем) -->
+        <g class="smoke" fill="none" stroke="#9a9188" stroke-width="1.6" stroke-linecap="round">
+          <path d="M130,50 C126,42 134,34 130,26 C126,18 134,10 130,2"/>
+          <path d="M124,52 C121,46 127,40 124,34" opacity="0.6"/>
+          <path d="M136,52 C139,46 133,40 136,34" opacity="0.6"/>
+        </g>
+
+        <!-- пламя -->
+        <g class="flame">
+          <ellipse cx="130" cy="42" rx="7" ry="12" fill="#f5a623"/>
+          <ellipse cx="130" cy="44" rx="4" ry="7"  fill="#ffd166"/>
+          <ellipse cx="130" cy="46" rx="2" ry="4"  fill="#fff3c4"/>
+        </g>
+
+        <!-- свеча -->
+        <rect x="124" y="60" width="12" height="46" rx="2" fill="#f0e9dd" stroke="#a88643" stroke-width="1.5"/>
+        <rect x="124" y="70" width="12" height="4" fill="#c9a86a"/>
+        <rect x="124" y="82" width="12" height="4" fill="#c9a86a"/>
+        <rect x="124" y="94" width="12" height="4" fill="#c9a86a"/>
+
+        <!-- фитиль -->
+        <line x1="130" y1="60" x2="130" y2="52" stroke="#2e2a26" stroke-width="2" stroke-linecap="round"/>
+
+        <!-- верхний ярус -->
+        <rect x="70" y="106" width="120" height="30" rx="6" fill="#f5e9d7" stroke="#a88643" stroke-width="1.5"/>
+        <path d="M78,116 Q88,122 98,116 Q108,122 118,116 Q128,122 138,116 Q148,122 158,116 Q168,122 178,116"
+              fill="none" stroke="#c9a86a" stroke-width="2" stroke-linecap="round"/>
+
+        <!-- нижний ярус -->
+        <rect x="50" y="136" width="160" height="46" rx="8" fill="#f0e9dd" stroke="#a88643" stroke-width="1.5"/>
+        <path d="M60,146 Q74,154 88,146 Q102,154 116,146 Q130,154 144,146 Q158,154 172,146 Q186,154 200,146"
+              fill="none" stroke="#c9a86a" stroke-width="2" stroke-linecap="round"/>
+
+        <!-- вишенки -->
+        <circle cx="80"  cy="158" r="5" fill="#c9a86a"/>
+        <circle cx="130" cy="162" r="5" fill="#c9a86a"/>
+        <circle cx="180" cy="158" r="5" fill="#c9a86a"/>
+
+        <!-- тарелка -->
+        <ellipse cx="130" cy="192" rx="105" ry="9" fill="#e6dccb" stroke="#a88643" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+    <div class="cake-message" id="cake-message"></div>
+    <button class="relight-btn" id="relight-btn" type="button">Зажечь снова</button>
+  </section>
+
+  <div class="details">
+    <div class="detail">
+      <div class="label">Когда</div>
+      <div class="value">31 октября 2026</div>
+    </div>
+    <div class="detail">
+      <div class="label">Во сколько</div>
+      <div class="value">15:00</div>
+    </div>
+    <div class="detail">
+      <div class="label">Где</div>
+      <div class="value">Бусыгина 9</div>
+    </div>
+    <div class="detail">
+      <div class="label">Почему</div>
+      <div class="value">Потому</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-head">
+    <h2>Список желаний</h2>
+    <p>Не обязательно выбирать отсюда — но если ищешь идею, эти вещи точно меня порадуют</p>
+  </div>
+
+  <main id="wishlist"></main>
+
+  <!-- ГАЛЕРЕЯ -->
+  <div class="section-head">
+    <h2>Моменты года</h2>
+    <p>Несколько кадров, которые особенно дороги</p>
+  </div>
+
+  <div class="gallery" id="gallery"></div>
+
+  <div class="confetti-btn-wrap">
+    <button class="confetti-btn" id="more-confetti" type="button">🎊 Ещё конфетти</button>
+  </div>
+
+  <footer>
+    <span class="heart">♡</span>
+    <div class="note-small">Спасибо, что будешь рядом (это я про гемморой ахахахахха шучу))))))</div>
+    <div>До встречи на празднике 🎂</div>
+  </footer>
+
+</div>
+
+<!-- ПАСХАЛКА -->
+<div class="egg-toast" id="egg-toast" role="status" aria-live="polite">
+  <button class="egg-close" id="egg-close" aria-label="Закрыть">×</button>
+  <span class="egg-title">Секрет разблокирован 🔓</span>
+  Ты задул свечу трижды. Уважение! Подойди на празднике и скажи: «Я задул её три раза», и я налью тебе чего-нибудь вкусного.
+</div>
+
+<script>
+// ====== НАСТРОЙКА ДАТЫ ======
+const EVENT_DATE = new Date("2026-10-31T15:00:00");
+// ============================
+
+// ====== ПОДАРКИ ======
+const wishes = [
+  {
+    title: "Видеорегистратор",
+    note: "70Mai A800SE",
+    price: "~9 000 ₽",
+    image: "images/gift-1.jpg",
+    link: "https://www.dns-shop.ru/product/c6e1c2726c41d9cb/videoregistrator-70mai-a800se/"
+  },
+  {
+    title: "Автосканер",
+    note: "Vgate iCar Pro ELM327",
+    price: "~2 500 ₽",
+    image: "images/gift-2.jpg",
+    link: "https://www.ozon.ru/product/avtoskaner-vgate-icar-pro-elm327-bluetooth-4-0-ios-android-v2-3-obd-2-adapter-839923928/"
+  },
+  {
+    title: "Ароматизаторы в машину",
+    note: "Eikosha Air Spencer",
+    price: "~2 000 ₽",
+    image: "images/gift-3.jpg",
+    link: "https://www.ozon.ru/product/nabor-aromatizatorov-v-mashinu-eikosha-air-spencer-aromaty-r90-samurai-neo-i-r90-squash-1769931780/"
+  },
+  {
+    title: "Органайзер",
+    note: "Да ебать, сумка в багажник",
+    price: "~1 000 ₽",
+    image: "images/gift-4.jpg",
+    link: "https://www.ozon.ru/product/organayzer-v-bagazhnik-dlya-avtomobilya-bolshoy-70x30x30-1416149743/"
+  },
+  {
+    title: "Карта памяти",
+    note: "Utashi Sakura U3 A2 V30 128GB, похуй, пусть будет такая. Ибо карты памяти нынче дорогие",
+    price: "~3 500 ₽",
+    image: "images/gift-5.jpg",
+    link: "https://www.dns-shop.ru/product/555fb05939c8d21a/karta-pamati-sandisk-high-endurance-microsdxc-64-gb-sdsqqnr-064g-gn6ia/"
+  },
+  {
+    title: "Коврик в багажник",
+    note: "Дорогой, но качественный (надеюсь), коврики в салон сам потом куплю)",
+    price: "~4 000 ₽",
+    image: "images/gift-6.jpg",
+    link: "https://www.ozon.ru/product/kovrik-v-bagazhnik-dlya-avtomobilya-henday-solyaris-sd-kia-rio-3-sd-2011-17-kia-rio-3-864531135/"
+  },
+  {
+    title: "Ортопедическая подушка",
+    note: "Хуй знает, что мне еще нужно. У Дашки такая же, спал на ней, вроде норм)",
+    price: "~2 200 ₽",
+    image: "images/gift-7.jpg",
+    link: "https://www.wildberries.ru/catalog/367967601/detail.aspx"
+  }
+];
+// =====================
+
+// ====== ФОТО ДЛЯ ГАЛЕРЕИ ======
+const galleryPhotos = [
+  { image: "images/photo-1.jpg", caption: "Заебал дождь" },
+  { image: "images/photo-2.jpg", caption: "Свет выключили" },
+  { image: "images/photo-3.jpg", caption: "Крысы" },
+  { image: "images/photo-4.jpg", caption: "Едем в деревню" },
+  { image: "images/photo-5.jpg", caption: "Это вообще хз когда было)" },
+  { image: "images/photo-6.jpg", caption: "Анэт" }
+];
+// ==============================
+
+/* ============ РЕНДЕР СПИСКА ============ */
+function renderWishes() {
+  document.getElementById("wishlist").innerHTML = wishes.map(w => `
+    <div class="card reveal">
+      <div class="img-wrap">
+        <img src="${w.image}" alt="${w.title}" loading="lazy"
+             onerror="this.src='https://placehold.co/300x300/f0e9dd/a88643?text=%3F'">
+      </div>
+      <div class="card-content">
+        <h3>${w.title}</h3>
+        ${w.note ? `<div class="note">${w.note}</div>` : ""}
+        <div class="meta">
+          ${w.price ? `<span class="price">${w.price}</span>` : "<span></span>"}
+          <a class="btn" href="${w.link}" target="_blank" rel="noopener">Купить →</a>
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
+renderWishes();
+
+/* ============ РЕНДЕР ГАЛЕРЕИ ============ */
+function renderGallery() {
+  document.getElementById("gallery").innerHTML = galleryPhotos.map(p => `
+    <div class="g-item reveal">
+      <img src="${p.image}" alt="${p.caption || ''}" loading="lazy"
+           onerror="this.src='https://placehold.co/400x400/f0e9dd/a88643?text=%3F'">
+      ${p.caption ? `<div class="g-caption">${p.caption}</div>` : ""}
+    </div>
+  `).join("");
+}
+renderGallery();
+
+/* ============ ОБРАТНЫЙ ОТСЧЁТ ============ */
+const cdEl = document.getElementById("countdown");
+const pad = n => String(n).padStart(2, "0");
+
+function updateCountdown() {
+  const diff = EVENT_DATE - new Date();
+  if (diff <= 0) {
+    cdEl.innerHTML = `<div class="countdown-done">Праздник уже начался! 🎉</div>`;
+    return;
+  }
+  const days  = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff / 3600000) % 24);
+  const mins  = Math.floor((diff / 60000) % 60);
+  const secs  = Math.floor((diff / 1000) % 60);
+  cdEl.innerHTML = `
+    <div class="unit"><span class="num">${days}</span><span class="cap">дней</span></div>
+    <div class="unit"><span class="num">${pad(hours)}</span><span class="cap">часов</span></div>
+    <div class="unit"><span class="num">${pad(mins)}</span><span class="cap">минут</span></div>
+    <div class="unit"><span class="num">${pad(secs)}</span><span class="cap">секунд</span></div>
+  `;
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* ============ ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ ============ */
+(function revealOnScroll() {
+  const items = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window)) {
+    items.forEach(el => el.classList.add("visible"));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add("visible"), i * 80);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+  items.forEach(el => io.observe(el));
+})();
+
+/* ============ ПАРАЛЛАКС ============ */
+(function parallax() {
+  const blobs = [
+    { el: document.querySelector(".blob-1"), speed: 0.15 },
+    { el: document.querySelector(".blob-2"), speed: -0.10 },
+    { el: document.querySelector(".blob-3"), speed: 0.08 }
+  ];
+  let ticking = false;
+  function update() {
+    const y = window.scrollY;
+    blobs.forEach(b => { if (b.el) b.el.style.transform = `translate3d(0, ${y * b.speed}px, 0)`; });
+    ticking = false;
+  }
+  window.addEventListener("scroll", () => {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+})();
+
+/* ============ ПЛАВАЮЩИЕ БЛЁСТКИ ============ */
+(function floatingParticles() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const canvas = document.getElementById("particles-canvas");
+  const ctx = canvas.getContext("2d");
+  let W, H;
+  const resize = () => { W = canvas.width = innerWidth; H = canvas.height = innerHeight; };
+  resize();
+  addEventListener("resize", resize);
+
+  const COUNT = 28;
+  const particles = [];
+  const create = (fromBottom) => ({
+    x: Math.random() * W,
+    y: fromBottom ? H + 10 : Math.random() * H,
+    r: 0.8 + Math.random() * 1.8,
+    vy: -0.15 - Math.random() * 0.35,
+    vx: (Math.random() - 0.5) * 0.15,
+    alpha: 0.3 + Math.random() * 0.45,
+    phase: Math.random() * Math.PI * 2,
+    phaseSpeed: 0.005 + Math.random() * 0.01
+  });
+  for (let i = 0; i < COUNT; i++) particles.push(create(false));
+
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      p.y += p.vy;
+      p.x += p.vx + Math.sin(p.phase) * 0.3;
+      p.phase += p.phaseSpeed;
+      const tw = 0.6 + Math.sin(p.phase) * 0.4;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(201,168,106,${p.alpha * tw})`;
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r * 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(201,168,106,${p.alpha * tw * 0.15})`;
+      ctx.fill();
+      if (p.y < -20 || p.x < -20 || p.x > W + 20) Object.assign(p, create(true));
+    });
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+/* ============ КОНФЕТТИ ============ */
+const Confetti = (function () {
+  const canvas = document.getElementById("confetti-canvas");
+  const ctx = canvas.getContext("2d");
+  let W, H;
+  const resize = () => { W = canvas.width = innerWidth; H = canvas.height = innerHeight; };
+  resize();
+  addEventListener("resize", resize);
+
+  const colors = ["#c9a86a", "#a88643", "#f0e9dd", "#e8c8b0", "#d9b8a0", "#faf6f0"];
+  const DURATION = 6000;
+  const FADE_START = 3500;
+
+  let particles = [];
+  let rafId = null;
+  let startTime = 0;
+  let running = false;
+
+  const ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+  function spawn(count = 140, originX = null, originY = null) {
+    particles = [];
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: originX !== null ? originX + (Math.random() - 0.5) * 80 : Math.random() * W,
+        y: originY !== null ? originY + (Math.random() - 0.5) * 40 : Math.random() * -H,
+        w: 6 + Math.random() * 8,
+        h: 8 + Math.random() * 10,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        vy: 1.5 + Math.random() * 3,
+        vx: -1 + Math.random() * 2,
+        rot: Math.random() * Math.PI * 2,
+        vrot: -0.1 + Math.random() * 0.2,
+        sway: Math.random() * Math.PI * 2,
+        swaySpeed: 0.02 + Math.random() * 0.03,
+        shape: Math.random() < 0.3 ? "circle" : "rect"
+      });
+    }
+  }
+
+  function drawParticle(p) {
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot);
+    ctx.fillStyle = p.color;
+    if (p.shape === "circle") {
+      ctx.beginPath(); ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2); ctx.fill();
+    } else {
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+    }
+    ctx.restore();
+  }
+
+  function frame(t) {
+    if (!startTime) startTime = t;
+    const elapsed = t - startTime;
+    const fadeProgress = elapsed > FADE_START ? Math.min(1, (elapsed - FADE_START) / (DURATION - FADE_START)) : 0;
+    const eased = ease(fadeProgress);
+    ctx.globalAlpha = 1 - eased;
+    const slow = 1 - eased * 0.65;
+
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      p.y += p.vy * slow;
+      p.x += (p.vx + Math.sin(p.sway) * 0.8) * slow;
+      p.sway += p.swaySpeed;
+      p.rot += p.vrot * slow;
+      drawParticle(p);
+      if (p.y > H + 20) { p.y = -20; p.x = Math.random() * W; }
+    });
+    ctx.globalAlpha = 1;
+
+    if (elapsed < DURATION) {
+      rafId = requestAnimationFrame(frame);
+    } else {
+      ctx.clearRect(0, 0, W, H);
+      cancelAnimationFrame(rafId);
+      rafId = null;
+      running = false;
+    }
+  }
+
+  function launch(opts = {}) {
+    if (running) return;
+    running = true;
+    startTime = 0;
+    spawn(opts.count || 140, opts.x ?? null, opts.y ?? null);
+    rafId = requestAnimationFrame(frame);
+  }
+
+  return { launch };
+})();
+
+addEventListener("load", () => setTimeout(() => Confetti.launch(), 300));
+document.getElementById("more-confetti").addEventListener("click", () => Confetti.launch());
+
+/* ============ ТОРТ СО СВЕЧКОЙ ============ */
+let isConfettiFromCake = false;
+
+(function cake() {
+  const wrap = document.getElementById("cake-wrap");
+  const message = document.getElementById("cake-message");
+  const hint = document.getElementById("cake-hint");
+  const relight = document.getElementById("relight-btn");
+
+  const phrases = [
+    "Желание загадано ✨",
+    "Пусть всё сбудется 🌟",
+    "Спасибо, что загадал вместе со мной 💫"
+  ];
+
+  function blow() {
+    if (wrap.classList.contains("blown")) return;
+    wrap.classList.add("blown");
+    message.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+    hint.textContent = "Нихуууууя, красиво то как, ы)";
+
+    const rect = wrap.getBoundingClientRect();
+    isConfettiFromCake = true;
+    Confetti.launch({
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height * 0.3,
+      count: 120
+    });
+
+    // Сброс флага через мгновение, чтобы пасхалка поняла, что это было задувание
+    setTimeout(() => { isConfettiFromCake = false; }, 100);
+  }
+
+  function relightCandle() {
+    wrap.classList.remove("blown");
+    message.textContent = "";
+    hint.textContent = "Задуй свечку — и загадай желание ✨";
+  }
+
+  wrap.addEventListener("click", blow);
+  wrap.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); blow(); }
+  });
+  relight.addEventListener("click", e => {
+    e.stopPropagation();
+    relightCandle();
+  });
+})();
+
+/* ============ ПАСХАЛКА ============ */
+(function easterEgg() {
+  const toast = document.getElementById("egg-toast");
+  const closeBtn = document.getElementById("egg-close");
+  const cakeWrap = document.getElementById("cake-wrap");
+
+  let blowCount = 0;
+  let autoHideTimer = null;
+
+  // Слушаем клики по торту
+  cakeWrap.addEventListener("click", () => {
+    // Проверяем, что это именно задувание свечи (сработал класс blown и конфетти)
+    if (cakeWrap.classList.contains("blown") && isConfettiFromCake) {
+      blowCount++;
+      if (blowCount === 3) {
+        showEgg();
+        blowCount = 0; // сбрасываем, чтобы можно было найти секрет снова
+      }
+    }
+  });
+
+  function showEgg() {
+    toast.classList.add("show");
+    clearTimeout(autoHideTimer);
+    autoHideTimer = setTimeout(hideEgg, 10000); // висит 10 секунд
+  }
+
+  function hideEgg() {
+    toast.classList.remove("show");
+    clearTimeout(autoHideTimer);
+  }
+
+  closeBtn.addEventListener("click", hideEgg);
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") hideEgg();
+  });
+})();
+</script>
+</body>
+</html>
